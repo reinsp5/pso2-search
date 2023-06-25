@@ -8,6 +8,8 @@ import {
   mdiWeatherNight,
   mdiAccount,
   mdiPlusBox,
+  mdiMagnify,
+  mdiPost,
 } from "@mdi/js";
 
 const router = useRouter();
@@ -39,10 +41,20 @@ changeTheme();
 
 <template>
   <v-app>
-    <v-app-bar :elevation="0">
-      <template v-slot:prepend>
-        <v-app-bar-nav-icon color="primary" @click.stop="drawer = !drawer" />
-      </template>
+    <v-app-bar density="comfortable" :elevation="0">
+      <v-app-bar-nav-icon
+        class="hidden-md-and-up"
+        color="primary"
+        @click.stop="drawer = !drawer"
+      />
+
+      <v-tabs class="hidden-sm-and-down">
+        <v-tab :prepend-icon="mdiHome" to="/">トップ</v-tab>
+        <v-tab :prepend-icon="mdiMagnify" to="/search">検索</v-tab>
+        <v-tab :prepend-icon="mdiPost" href="https://blog.pso2-search.com" target="_blank">
+          開発ブログ
+        </v-tab>
+      </v-tabs>
 
       <template v-slot:append>
         <v-icon color="primary" :icon="mdiWeatherSunny" />
@@ -57,7 +69,7 @@ changeTheme();
         <v-icon color="primary" class="mr-4" :icon="mdiWeatherNight" />
       </template>
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" temporary>
+    <v-navigation-drawer class="hidden-md-and-up" v-model="drawer" temporary>
       <ClientOnly>
         <v-list nav>
           <v-list-item :prepend-icon="mdiHome" title="ホーム" to="/" nuxt />
