@@ -3,6 +3,7 @@ import {
   mdiHome,
   mdiPencilPlus,
   mdiLogin,
+  mdiLogout,
   mdiAccountPlus,
   mdiWeatherSunny,
   mdiWeatherNight,
@@ -21,7 +22,7 @@ useSeoMeta({
 });
 
 // 認証状況を確認
-const { checkAuthState, isAuthed } = useAuth();
+const { checkAuthState, signOut, isAuthed } = useAuth();
 await checkAuthState();
 
 // ナビゲーションドロワーの開閉
@@ -48,12 +49,66 @@ changeTheme();
         @click.stop="drawer = !drawer"
       />
 
-      <v-tabs class="hidden-sm-and-down">
-        <v-tab :prepend-icon="mdiHome" to="/">トップ</v-tab>
-        <v-tab :prepend-icon="mdiMagnify" to="/search">検索</v-tab>
-        <v-tab :prepend-icon="mdiPost" href="https://blog.pso2-search.com" target="_blank">
+      <v-tabs class="hidden-sm-and-down" grow>
+        <v-tab :prepend-icon="mdiHome" to="/" nav>トップ</v-tab>
+        <v-tab :prepend-icon="mdiMagnify" to="/search" nav>検索</v-tab>
+        <v-tab
+          :prepend-icon="mdiPost"
+          href="https://blog.pso2-search.com"
+          target="_blank"
+        >
           開発ブログ
         </v-tab>
+        <v-spacer class="w-100" />
+        <v-menu
+          class="hidden-sm-and-down"
+          :open-delay="0"
+          :close-delay="0"
+          open-on-hover
+        >
+          <template v-slot:activator="{ props }">
+            <v-tab
+              v-if="isAuthed"
+              class="hidden-sm-and-down"
+              height="100%"
+              :prepend-icon="mdiAccount"
+              v-bind="props"
+              to="/account"
+              nav
+            >
+              アカウントページ
+            </v-tab>
+            <v-tab
+              v-else
+              class="hidden-sm-and-down"
+              height="100%"
+              :prepend-icon="mdiAccount"
+              v-bind="props"
+            >
+              アカウント
+            </v-tab>
+          </template>
+
+          <v-list v-if="isAuthed" density="comfortable">
+            <v-list-item
+              :prepend-icon="mdiLogout"
+              title="ログアウト"
+              @click-once="signOut"
+            />
+          </v-list>
+          <v-list v-else density="comfortable">
+            <v-list-item
+              :prepend-icon="mdiAccountPlus"
+              title="登録"
+              to="/signup"
+            />
+            <v-list-item
+              :prepend-icon="mdiLogin"
+              title="ログイン"
+              to="signin"
+            />
+          </v-list>
+        </v-menu>
       </v-tabs>
 
       <template v-slot:append>
@@ -73,31 +128,41 @@ changeTheme();
       <ClientOnly>
         <v-list nav>
           <v-list-item :prepend-icon="mdiHome" title="ホーム" to="/" nuxt />
-          <v-list-item
-            v-if="!isAuthed"
-            :prepend-icon="mdiAccountPlus"
-            title="アカウント登録"
-            to="/signup"
-            nuxt
-          />
-          <v-list-item
-            v-if="!isAuthed"
-            :prepend-icon="mdiLogin"
-            title="ログイン"
-            to="/signin"
-            nuxt
-          />
-          <v-list-item
-            v-if="isAuthed"
-            :prepend-icon="mdiPlusBox"
-            title="アイテム登録"
-            to="/item/create"
-            nuxt
-          />
+          <v-list-group v-if="!isAuthed" value="アカウント">
+            <template v-slot:activator="{ props }">
+              <v-list-item
+                :prepend-icon="mdiAccount"
+                v-bind="props"
+                title="アカウント"
+              />
+            </template>
+            <v-list-item
+              v-if="!isAuthed"
+              :prepend-icon="mdiAccountPlus"
+              title="アカウント登録"
+              to="/signup"
+              nuxt
+            />
+            <v-list-item
+              v-if="!isAuthed"
+              :prepend-icon="mdiLogin"
+              title="ログイン"
+              to="/signin"
+              nuxt
+            />
+            <v-list-item
+              v-if="isAuthed"
+              :prepend-icon="mdiPlusBox"
+              title="アイテム登録"
+              to="/item/create"
+              nuxt
+            />
+          </v-list-group>
+
           <v-list-item
             v-if="isAuthed"
             :prepend-icon="mdiAccount"
-            title="アカウント"
+            title="アカウントページ"
             to="/account"
             nuxt
           />
