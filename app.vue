@@ -52,15 +52,13 @@ changeTheme();
       <v-tabs class="hidden-sm-and-down" grow>
         <v-tab :prepend-icon="mdiHome" to="/" nav>トップ</v-tab>
         <v-tab :prepend-icon="mdiMagnify" to="/search" nav>検索</v-tab>
-        <v-tab
-          :prepend-icon="mdiPost"
-          href="https://blog.pso2-search.com"
-          target="_blank"
-        >
+        <v-tab :prepend-icon="mdiPost" href="https://blog.pso2-search.com">
           開発ブログ
         </v-tab>
         <v-spacer class="w-100" />
-        <v-tab v-if="isAuthed" :prepend-icon="mdiPlusBox" to="/item/create" nav>アイテム登録</v-tab>
+        <v-tab v-if="isAuthed" :prepend-icon="mdiPlusBox" to="/item/create" nav>
+          アイテム登録
+        </v-tab>
         <v-menu
           class="hidden-sm-and-down"
           :open-delay="0"
@@ -129,11 +127,11 @@ changeTheme();
       <ClientOnly>
         <v-list nav>
           <v-list-item :prepend-icon="mdiHome" title="ホーム" to="/" nuxt />
+          <v-list-item :prepend-icon="mdiMagnify" title="検索" to="/search" />
           <v-list-item
-            :prepend-icon="mdiMagnify"
-            title="検索"
-            to="/search"
-            nuxt
+            :prepend-icon="mdiPost"
+            title="開発ブログ"
+            href="https://blog.pso2-search.com"
           />
           <v-list-group v-if="!isAuthed" value="アカウント">
             <template v-slot:activator="{ props }">
@@ -148,14 +146,12 @@ changeTheme();
               :prepend-icon="mdiAccountPlus"
               title="アカウント登録"
               to="/signup"
-              nuxt
             />
             <v-list-item
               v-if="!isAuthed"
               :prepend-icon="mdiLogin"
               title="ログイン"
               to="/signin"
-              nuxt
             />
           </v-list-group>
 
@@ -164,7 +160,6 @@ changeTheme();
             :prepend-icon="mdiPlusBox"
             title="アイテム登録"
             to="/item/create"
-            nuxt
           />
 
           <v-list-item
