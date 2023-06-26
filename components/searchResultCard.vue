@@ -36,7 +36,7 @@ const getClass = (index: number) => {
       </v-card-title>
       <v-row class="ma-4" align="center" justify="center" no-gutters>
         <v-col align="center" cols="12">
-          <v-avatar size="200" class="ma-8">
+          <v-avatar size="200" class="ma-8" rounded="0">
             <v-img :src="item.cover_image_url.url" />
           </v-avatar>
         </v-col>
