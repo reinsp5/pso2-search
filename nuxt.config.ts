@@ -14,10 +14,38 @@ const {
 export default defineNuxtConfig({
   devtools: true,
   ssr: false,
-  modules: ["nuxt-icons", "@nuxtjs/fontaine", "@vueuse/nuxt", "@nuxtjs/device"],
+  modules: [
+    "nuxt-icons",
+    "@nuxtjs/fontaine",
+    "@vueuse/nuxt",
+    "@nuxtjs/device",
+    "nuxt-simple-sitemap",
+  ],
   typescript: {
     strict: true,
     typeCheck: true,
+  },
+  sitemap: {
+    siteUrl: "https://pso2-search.com",
+    sitemaps: {
+      pages: {
+        include: ["/", "/about", "/privacy", "/terms", "/search"],
+        defaults: {
+          priority: 1,
+        },
+        exclude: [
+          "/404",
+          "/account",
+          "/account/**",
+          "/admin",
+          "/admin/**",
+          "/item",
+          "/item/**",
+          "/signup",
+          "/signin",
+        ],
+      },
+    },
   },
   nitro: {
     preset: "cloudflare-pages",
