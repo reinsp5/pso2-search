@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { mdiImage } from "@mdi/js";
 
-const required = (v: File) => !!v || "アイテム画像は必須です";
 const limitSize = (v: any) => {
   return (
     v.every((file: File) => file.size < 8388608) ||
@@ -14,7 +13,11 @@ const previewUrl = useState<string>("preview-url", () => "");
 
 const changeImage = () => {
   const file = images.value[0];
-  if (!file) return;
+  if (!file) {
+    console.log("ファイルが選択されていません");
+    previewUrl.value = "";
+    return;
+  }
   const reader = new FileReader();
   reader.onload = (event) => {
     const img = new Image();
@@ -50,7 +53,7 @@ const changeImage = () => {
     <v-file-input
       class="mt-4"
       v-model="images"
-      :rules="[required, limitSize]"
+      :rules="[limitSize]"
       accept="image/png, image/jpeg"
       placeholder="アイテム詳細の画像"
       :prepend-icon="mdiImage"

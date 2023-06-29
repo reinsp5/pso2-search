@@ -13,7 +13,6 @@ import {
 import type { VForm } from "vuetify/lib/components/index.mjs";
 import { v4 as uuidv4 } from "uuid";
 import { Item } from "~/types/item";
-import { useImageUpload } from "~/composables/useImageUpload";
 import { DirectUploadUrlResponse } from "~/types/cloudflare";
 
 // 認証必須
@@ -50,35 +49,46 @@ const createItem = async () => {
     return;
   }
 
-  // 画像アップロード用のURLを取得
-  const { getUploadUrl } = useImageUpload();
-  const uploadUrl = getUploadUrl();
-
-  // 画像アップロード用のURLが取得できなかったらエラー
-  if (!uploadUrl) {
-    loading.value = false;
-    return;
-  } else if (!uploadUrl.success) {
-    loading.value = false;
-    return;
-  }
-
-  // 画像をアップロード
+  // イメージURL
   const previewUrl = useState<string>("preview-url", () => "");
-  const response = await fetch(previewUrl.value);
-  const fileBlob = await response.blob();
-  const formData = new FormData();
-  formData.append("file", fileBlob);
-  const { data } = await useFetch<DirectUploadUrlResponse>(uploadUrl.uploadURL, {
-    method: "POST",
-    body: formData,
-  });
 
-  // 画像のアップロードが失敗したらエラー
-  if (!data.value) {
-    throw new Error("画像のアップロードに失敗しました。");
-  } else if (!data.value!.success) {
-    throw new Error("画像のアップロードに失敗しました。");
+  // 画像が選択されている場合はアップロード
+  const upload = ref<DirectUploadUrlResponse>();
+  if (previewUrl.value != "") {
+    // 画像アップロード用のURLを取得
+    const { getUploadUrl } = useImageUpload();
+    const uploadUrl = getUploadUrl();
+
+    // 画像アップロード用のURLが取得できなかったらエラー
+    if (!uploadUrl) {
+      loading.value = false;
+      return;
+    } else if (!uploadUrl.success) {
+      loading.value = false;
+      return;
+    }
+
+    // 画像をアップロード
+    const response = await fetch(previewUrl.value);
+    const fileBlob = await response.blob();
+    const formData = new FormData();
+    formData.append("file", fileBlob);
+    const { data } = await useFetch<DirectUploadUrlResponse>(
+      uploadUrl.uploadURL,
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
+
+    // 画像のアップロードが失敗したらエラー
+    if (!data.value) {
+      throw new Error("画像のアップロードに失敗しました。");
+    } else if (!data.value!.success) {
+      throw new Error("画像のアップロードに失敗しました。");
+    }
+
+    upload.value = data.value;
   }
 
   // データベースに登録
@@ -130,8 +140,12 @@ const createItem = async () => {
         created_at: Timestamp.now(),
         updated_at: Timestamp.now(),
         cover_image_url: {
-          id: data.value!.result.id,
-          url: `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${data.value!.result.id}/public`,
+          id: upload.value?.result.id ?? "",
+          url: upload.value
+            ? `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${
+                upload.value!.result.id
+              }/public`
+            : "https://pso2-search.com/no_image.webp",
         },
       });
     });
