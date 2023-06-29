@@ -145,7 +145,7 @@ const createItem = async () => {
             ? `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${
                 upload.value!.result.id
               }/public`
-            : "https://pso2-search.com/no_image.webp",
+            : "https://pso2-search.com/images/no_image.webp",
         },
       });
     });
