@@ -121,16 +121,6 @@ const createItem = async () => {
       }
       const uuid = uuidv4();
 
-      // DEBUG
-      console.debug({
-        ...itemInfo.value.toJSON(),
-        id: uuid,
-        create_user: userDoc.get("displayName") ?? "unknown",
-        update_user: userDoc.get("displayName") ?? "unknown",
-        created_at: Timestamp.now(),
-        updated_at: Timestamp.now(),
-      });
-
       // ドキュメントを追加
       const docRef = await addDoc(collection($store, "items"), {
         ...itemInfo.value.toJSON(),
