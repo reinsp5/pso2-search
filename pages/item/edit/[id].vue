@@ -119,9 +119,9 @@ const createItem = async () => {
         throw new Error("ユーザ情報が取得できませんでした。");
       }
 
-      console.log(itemInfo.value);
+      console.log(toRaw(itemInfo.value));
       let updateItem = {
-        ...itemInfo.value.toJSON(),
+        ...toRaw(itemInfo.value).toJSON(),
         update_user: userDoc.get("displayName") ?? "unknown",
         updated_at: Timestamp.now(),
       };
