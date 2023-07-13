@@ -11,6 +11,7 @@ definePageMeta({
 
 // 入力情報の共有State
 const itemInfo = useInsertItemInfo();
+console.log(typeof itemInfo.value);
 
 const config = useRuntimeConfig();
 
@@ -119,9 +120,9 @@ const createItem = async () => {
         throw new Error("ユーザ情報が取得できませんでした。");
       }
 
-      console.log(toRaw(itemInfo.value));
+      console.log(typeof itemInfo.value);
       let updateItem = {
-        ...toRaw(itemInfo.value).toJSON(),
+        ...itemInfo.value.toJSON(),
         update_user: userDoc.get("displayName") ?? "unknown",
         updated_at: Timestamp.now(),
       };
