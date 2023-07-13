@@ -119,6 +119,7 @@ const createItem = async () => {
         throw new Error("ユーザ情報が取得できませんでした。");
       }
 
+      console.log(itemInfo.value);
       let updateItem = {
         ...itemInfo.value.toJSON(),
         update_user: userDoc.get("displayName") ?? "unknown",
