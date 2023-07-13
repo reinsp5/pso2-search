@@ -27,6 +27,7 @@ useSeoMeta({
 
 // 入力情報の共有State
 const itemInfo = useInsertItemInfo();
+console.log(typeof itemInfo.value);
 
 // アイテムフォーム
 const itemCreateForm = ref<VForm | null>(null);
