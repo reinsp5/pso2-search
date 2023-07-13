@@ -134,8 +134,9 @@ const createItem = async () => {
     // <<トランザクション終了>>
 
     // フォームをリセット
-    itemCreateForm.value.reset();
     itemInfo.value = new Item();
+    previewUrl.value = "";
+    images.value = [];
   } catch (e: unknown) {
     if (e instanceof Error) {
       console.error(e.message);
