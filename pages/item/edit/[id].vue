@@ -11,9 +11,6 @@ definePageMeta({
 
 // 入力情報の共有State
 const itemInfo = useInsertItemInfo();
-console.log(typeof itemInfo.value);
-
-const config = useRuntimeConfig();
 
 // URLクエリからアイテムIDを取得
 const itemId = useRoute().params.id as string;
@@ -27,7 +24,7 @@ const itemDoc = async () => {
   };
   const response = await search();
   docUid.value = response!.hits[0]._firestore_id;
-  itemInfo.value = new Item().mapItem(response!.hits[0]) || new Item();
+  itemInfo.value = itemInfo.value.mapItem(response!.hits[0]) || new Item();
 };
 
 await itemDoc();
@@ -120,23 +117,19 @@ const createItem = async () => {
         throw new Error("ユーザ情報が取得できませんでした。");
       }
 
-      console.log(typeof itemInfo.value);
-      let updateItem = {
-        ...itemInfo.value.toJSON(),
-        update_user: userDoc.get("displayName") ?? "unknown",
-        updated_at: Timestamp.now(),
-      };
+      itemInfo.value.update_user = userDoc.get("displayName") ?? "unknown";
+      itemInfo.value.updated_at = Timestamp.now();
 
       // 画像がアップロードされている場合は画像URLを更新
       if (upload.value) {
-        updateItem.cover_image_url = {
-          id: upload.value.result.id,
-          url: `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${upload.value.result.id}/public`,
-        };
+        itemInfo.value.cover_image_url.id = upload.value.result.id;
+        itemInfo.value.cover_image_url.url = `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${upload.value.result.id}/public`;
       }
 
       // ドキュメントを更新する
-      transaction.update(updateDocRef, updateItem);
+      transaction.update(updateDocRef, {
+        ...itemInfo.value,
+      });
     });
     // <<トランザクション終了>>
 
