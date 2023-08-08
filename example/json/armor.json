@@ -1,0 +1,35 @@
+{
+  "uid": "9f3d14d2-2721-4688-91e7-10457be8822b",
+  "name": "プリムアーマー",
+  "commonDetails": {
+    "description": "", // 説明文
+    "category": "防具", // カテゴリー
+    "rarity": 1, // レアリティ
+    "isTradable": true, // マイショップ出品可否
+    "hasColorVariation": true, // カラーバリエーション有無
+    "availability": [
+      "エネミードロップ"
+    ] // 入手方法
+  },
+  "categorySpecificDetails": {
+    "minDefence": 10, // 最小防御力
+    "maxDefence": 20, // 最大防御力
+    "strDamageUp": 0, // 打撃力アップ
+    "rgeDamageUp": 0, // 射撃力アップ
+    "techDamageUp": 0, // 法撃力アップ
+    "hpUp": 0, // HPアップ
+    "ppUp": 0, // PPアップ
+    "damageResist": 0.1, // ダメージ軽減率
+    "burnResist": 0.1, // 炎耐性
+    "freezeResist": 0.1, // 氷耐性
+    "shockResist": 0.1, // 雷耐性
+    "mirageResist": 0.1, // ミラージュ性耐性
+    "panicResist": 0.1, // 混乱耐性
+    "poisonResist": 0.1, // 毒耐性
+    "painResist": 0.1, // ペイン耐性
+    "requiredLevel": 1, // 必要レベル
+    "specialAbilities": [
+      "なし"
+    ] // 特殊能力
+  }
+}

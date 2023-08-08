@@ -1,0 +1,23 @@
+{
+  "uid": "9f3d14d2-2721-4688-91e7-10457be8822b",
+  "name": "プリムソード",
+  "commonDetails": {
+    "description": "", // 説明文
+    "category": "武器", // カテゴリー
+    "rarity": 1, // レアリティ
+    "isTradable": true, // マイショップ出品可否
+    "hasColorVariation": true, // カラーバリエーション有無
+    "availability": [
+      "エネミードロップ"
+    ] // 入手方法
+  },
+  "categorySpecificDetails": {
+    "weaponType": "ソード", // 武器種
+    "minAttack": 10, // 最小攻撃力
+    "maxAttack": 20, // 最大攻撃力
+    "criticalRate": 0.1, // クリティカル率
+    "effect": "なし", // 属性
+    "requiredLevel": 1, // 必要レベル
+    "potential": "なし" // 潜在能力
+  }
+}
