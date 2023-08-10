@@ -13,7 +13,7 @@ const {
 
 export default defineNuxtConfig({
   devtools: true,
-  ssr: false,
+  ssr: true,
   modules: [
     "nuxt-icons",
     "@nuxtjs/fontaine",
