@@ -1,19 +1,16 @@
-import { CommonDetails } from '@/types/common_details';
+import { ICommon } from 'types/i_common';
 
 /**
  * interface 能力カプセル
  */
-export interface Capsule {
-  uuid: string; // uuid
-  name: string; // カプセル名
-  commonDetails: CommonDetails; // 共通詳細
-  categorySpecificDetails: CapsuleSpecificDetails; // カプセル固有詳細
+export interface ICapsule extends ICommon {
+  categorySpecificDetails: ICapsuleSpecificDetails; // カプセル固有詳細
 }
 
 /**
  * interface 能力カプセル固有詳細
  */
-interface CapsuleSpecificDetails {
+interface ICapsuleSpecificDetails {
   damageUp: number; // 威力
   strDamageUp: number; // 打撃力
   rgeDamageUp: number; // 射撃力

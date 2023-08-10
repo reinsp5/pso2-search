@@ -1,19 +1,16 @@
-import { CommonDetails } from "@/types/common_details";
+import { ICommon } from "types/i_common";
 
 /**
  * interface 防具
  */
-export interface Armor {
-  uuid: string; // uuid
-  name: string; // 防具名
-  commonDetails: CommonDetails; // 共通詳細
-  categorySpecificDetails: ArmorSpecificDetails; // 防具固有詳細
+export interface IArmor extends ICommon {
+  categorySpecificDetails: IArmorSpecificDetails; // 防具固有詳細
 }
 
 /**
  * interface 防具固有詳細
  */
-interface ArmorSpecificDetails {
+interface IArmorSpecificDetails {
   minDefence: number; // 最小防御力
   maxDefence: number; // 最大防御力
   strDamageUp: number; // 打撃力
