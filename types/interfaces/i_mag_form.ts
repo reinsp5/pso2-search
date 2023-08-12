@@ -1,4 +1,4 @@
-import { ICommon } from "./i_common";
+import { ICommon } from "types/interfaces/i_common";
 
 /**
  * interface マグフォルム
@@ -10,6 +10,6 @@ export interface IMagForm extends ICommon {
 /**
  * interface マグフォルム固有詳細
  */
-interface IMagFormSpecificDetails {
+export interface IMagFormSpecificDetails {
   canChangeColor: boolean; // カラーチェンジ可否
 }

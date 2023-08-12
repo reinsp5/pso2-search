@@ -16,9 +16,9 @@ import { Item } from "~/types/item";
 import { DirectUploadUrlResponse } from "~/types/cloudflare";
 
 // 認証必須
-definePageMeta({
-  middleware: ["auth"],
-});
+// definePageMeta({
+//   middleware: ["auth"],
+// });
 
 // SEO情報
 useSeoMeta({
@@ -158,61 +158,13 @@ const createItem = async () => {
 
 <template>
   <v-container class="h-100">
-    <v-row class="h-100" align="center">
+    <v-row class="h-100">
       <v-col>
-        <v-card class="mx-auto" variant="flat" max-width="720">
+        <v-card class="mx-auto" variant="flat" max-width="1280">
           <v-card-title class="d-flex align-center justify-center text-h5">
             アイテム登録
           </v-card-title>
-          <v-form
-            ref="itemCreateForm"
-            validate-on="input"
-            @submit.prevent="createItem"
-          >
-            <v-row no-gutters>
-              <!-- 共通項目 -->
-              <ItemNameField />
-              <ItemMainImage />
-              <ItemCategorySelector />
-              <ItemSubCategorySelector />
-              <ItemRarity />
-              <TradeableSwitch />
-              <Pso2RevivalSwitch />
-              <AvailableField />
-              <TagsField />
-
-              <!-- 個別項目 -->
-              <ElementSelector />
-              <PotentialSelector />
-              <ColorVariantSwitch />
-              <SpecialAbilitySelector />
-              <RequirementFields />
-
-              <!-- 武器 -->
-              <WeaponTypeSelector />
-              <AtkPowerField />
-
-              <!-- 防具 -->
-              <DefPowerField />
-              <AttributeFields />
-
-              <!-- 武器迷彩 -->
-              <MountableWeaponTypesSelector />
-            </v-row>
-            <v-card-actions>
-              <v-btn
-                :loading="loading"
-                class="text-none mt-8"
-                color="blue-darken-4"
-                size="x-large"
-                variant="flat"
-                type="submit"
-                block
-              >
-                登録する
-              </v-btn>
-            </v-card-actions>
-          </v-form>
+          <CreateForm />
         </v-card>
       </v-col>
     </v-row>

@@ -1,4 +1,4 @@
-import { ICommon } from "types/i_common";
+import { ICommon } from "types/interfaces/i_common";
 
 /**
  * interface 防具
@@ -10,7 +10,7 @@ export interface IArmor extends ICommon {
 /**
  * interface 防具固有詳細
  */
-interface IArmorSpecificDetails {
+export interface IArmorSpecificDetails {
   minDefence: number; // 最小防御力
   maxDefence: number; // 最大防御力
   strDamageUp: number; // 打撃力
@@ -26,5 +26,6 @@ interface IArmorSpecificDetails {
   panicResist: number; // パニック耐性
   poisonResist: number; // 毒属性耐性
   painResist: number; // ペイン耐性
+  environmentResist: number; // 環境耐性
   requiredLevel: number; // 必要レベル
 }

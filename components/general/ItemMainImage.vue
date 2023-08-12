@@ -49,72 +49,74 @@ const changeImage = () => {
 </script>
 
 <template>
-  <v-col cols="12">
-    <v-file-input
-      class="mt-4"
-      v-model="images"
-      :rules="[limitSize]"
-      accept="image/png, image/jpeg"
-      placeholder="アイテム詳細の画像"
-      :prepend-icon="mdiImage"
-      label="アイテムの画像"
-      variant="outlined"
-      density="compact"
-      @update:model-value="changeImage"
-    />
-  </v-col>
-  <v-col align="center" cols="12" md="6">
-    <v-img
-      v-if="images.length"
-      :src="previewUrl"
-      max-width="320"
-      :aspect-ratio="1 / 1"
-      cover
-    />
-    <v-sheet
-      v-if="!images.length"
-      max-width="320"
-      max-height="320"
-      width="100%"
-      height="320"
-      rounded="lg"
-      border="sm opacity-50"
-      color="transparent"
-      class="mb-8 pa-4 d-flex align-center justify-center"
-    >
-      <v-icon :icon="mdiImage" size="100" />
-    </v-sheet>
-  </v-col>
-  <v-col class="pl-md-16" align-self="start" cols="12" md="6">
-    <v-list lines="three">
-      <v-list-item>
-        <v-list-item-title class="font-weight-bold">
-          「アイテム詳細」の画像推奨
-        </v-list-item-title>
-        <v-list-item-subtitle>
-          PSO2内のアイテム詳細で表示される四角形の画像を添付してください。
-        </v-list-item-subtitle>
-      </v-list-item>
+  <v-row>
+    <v-col cols="12">
+      <v-file-input
+        v-model="images"
+        :rules="[limitSize]"
+        accept="image/png, image/jpeg"
+        placeholder="アイテム詳細の画像"
+        :prepend-icon="null"
+        :prepend-inner-icon="mdiImage"
+        label="アイテムの画像"
+        variant="outlined"
+        density="compact"
+        @update:model-value="changeImage"
+      />
+    </v-col>
+    <v-col align="center" cols="12" md="6">
+      <v-img
+        v-if="images.length"
+        :src="previewUrl"
+        max-width="320"
+        :aspect-ratio="1 / 1"
+        cover
+      />
+      <v-sheet
+        v-if="!images.length"
+        max-width="320"
+        max-height="320"
+        width="100%"
+        height="290"
+        rounded="lg"
+        border="sm opacity-50"
+        color="transparent"
+        class="mb-8 pa-4 d-flex align-center justify-center"
+      >
+        <v-icon :icon="mdiImage" size="100" />
+      </v-sheet>
+    </v-col>
+    <v-col align-self="start" cols="12" md="6">
+      <v-list lines="three">
+        <v-list-item>
+          <v-list-item-title class="font-weight-bold">
+            「アイテム詳細」の画像推奨
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            PSO2内のアイテム詳細で表示される四角形の画像を添付してください。
+          </v-list-item-subtitle>
+        </v-list-item>
 
-      <v-list-item>
-        <v-list-item-title class="font-weight-bold">
-          「&copy;SEGA」は自動挿入
-        </v-list-item-title>
-        <v-list-item-subtitle>
-          PSO2の著作物利用ガイドラインに基づき、「&copy;SEGA」を画像左上に自動挿入します。
-        </v-list-item-subtitle>
-      </v-list-item>
+        <v-list-item>
+          <v-list-item-title class="font-weight-bold">
+            「&copy;SEGA」は自動挿入
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            PSO2の著作物利用ガイドラインに基づき、「&copy;SEGA」を画像左上に自動挿入します。
+          </v-list-item-subtitle>
+        </v-list-item>
 
-      <v-list-item>
-        <v-list-item-title class="font-weight-bold">
-          JPEG/PNGかつ8MB未満
-        </v-list-item-title>
-        <v-list-item-subtitle>
-          アップロード可能なファイルは8MB未満です。JPEGまたはPNG形式に対応しています。
-        </v-list-item-subtitle>
-      </v-list-item>
-    </v-list>
-  </v-col>
+        <v-list-item>
+          <v-list-item-title class="font-weight-bold">
+            JPEG/PNGかつ8MB未満
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            アップロード可能なファイルは8MB未満です。JPEGまたはPNG形式に対応しています。
+          </v-list-item-subtitle>
+        </v-list-item>
+      </v-list>
+    </v-col>
+  </v-row>
 </template>
 
 <style scoped></style>

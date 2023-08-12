@@ -1,4 +1,4 @@
-import { ICommon } from "types/i_common";
+import { ICommon } from "types/interfaces/i_common";
 
 /**
  * interface 武器明細
@@ -10,7 +10,7 @@ export interface IWeaponSkin extends ICommon {
 /**
  * interface 武器固有詳細
  */
-interface IWeaponSkinSpecificDetails {
+export interface IWeaponSkinSpecificDetails {
   canSword: boolean; // ソード
   canPartisan: boolean; // パルチザン
   canWiredLance: boolean; // ワイヤードランス

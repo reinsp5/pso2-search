@@ -1,4 +1,4 @@
-import { ICommon } from "./i_common";
+import { ICommon } from "types/interfaces/i_common";
 
 /**
  * interface ミュージックディスク
@@ -10,6 +10,6 @@ export interface IMusicDisc extends ICommon {
 /**
  * interface ミュージックディスク固有詳細
  */
-interface IMusicDiscSpecificDetails {
+export interface IMusicDiscSpecificDetails {
   patterns: string[]; // 再生可能
 }

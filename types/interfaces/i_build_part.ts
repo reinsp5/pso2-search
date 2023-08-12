@@ -1,4 +1,4 @@
-import { ICommon } from "./i_common";
+import { ICommon } from "types/interfaces/i_common";
 
 /**
  * interface ビルドパーツ
@@ -10,7 +10,7 @@ export interface IBuildPart extends ICommon {
 /**
  * interface ビルドパーツ固有詳細
  */
-interface IBuildPartSpecificDetails {
+export interface IBuildPartSpecificDetails {
   canScale: boolean; // スケール
   canRotate: boolean; // 回転
   canChangeColor: boolean; // カラーチェンジ

@@ -1,4 +1,4 @@
-import { ICommon } from 'types/i_common';
+import { ICommon } from 'types/interfaces/i_common';
 
 /**
  * interface 能力カプセル
