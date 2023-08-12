@@ -10,7 +10,7 @@ export class BuildPart extends Common implements IBuildPart {
 }
 
 export class BuildPartSpecificDetails implements IBuildPartSpecificDetails {
-  type: string;
+  subCategory: string;
   canScale: boolean;
   canRotate: boolean;
   canChangeColor: boolean;
@@ -18,7 +18,7 @@ export class BuildPartSpecificDetails implements IBuildPartSpecificDetails {
   canRegister: boolean;
   purchaseCost: number;
   constructor() {
-    this.type = "";
+    this.subCategory = "";
     this.canScale = false;
     this.canRotate = false;
     this.canChangeColor = false;

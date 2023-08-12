@@ -17,16 +17,18 @@ watch(
 </script>
 
 <template>
-  <v-col cols="12" class="my-4 px-0">
-    <v-text-field
-      v-model="tags"
-      label="タグ"
-      variant="outlined"
-      density="compact"
-      placeholder="タグは「#」ごとに認識されます。半角／全角スペースは削除されます。"
-      hide-details
-    />
-  </v-col>
+  <v-row>
+    <v-col cols="12" class="my-4">
+      <v-text-field
+        v-model="tags"
+        label="タグ"
+        variant="outlined"
+        density="compact"
+        placeholder="タグは「#」ごとに認識されます。半角／全角スペースは削除されます。"
+        hide-details
+      />
+    </v-col>
+  </v-row>
 </template>
 
 <style scoped></style>
