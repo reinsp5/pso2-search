@@ -1,17 +1,19 @@
 import { Common, CommonDetails } from "./common";
 import {
-  ICharacterCreate,
-  ICharacterCreateSpecificDetails,
-} from "./interfaces/i_character_create";
-export class CharacterCreate extends Common implements ICharacterCreate {
+  IEsthetic,
+  IEstheticSpecificDetails,
+} from "./interfaces/i_esthetic";
+
+export class Esthetic extends Common implements IEsthetic {
+  categorySpecificDetails: EstheticSpecificDetails;
   constructor(name: string, commonDetails: CommonDetails) {
     super(name, commonDetails);
-    this.categorySpecificDetails = new CharacterCreateSpecificDetails();
+    this.categorySpecificDetails = new EstheticSpecificDetails();
   }
 }
 
-class CharacterCreateSpecificDetails
-  implements ICharacterCreateSpecificDetails
+export class EstheticSpecificDetails
+  implements IEstheticSpecificDetails
 {
   subCategory: string;
   colorSetting: string[];

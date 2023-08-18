@@ -16,7 +16,7 @@ const createItem = () => {
           <Rarity />
           <CommonOptions />
         </v-col>
-        <v-col cols="12" md="6" class="pa-4">
+        <v-col cols="12" md="6" class="px-4">
           <ArmorSpecificDetails
             v-if="itemInfo.commonDetails.category == '防具'"
           />
@@ -26,7 +26,9 @@ const createItem = () => {
             "
           />
           <MusicDiscSpecificDetails
-            v-else-if="itemInfo.commonDetails.category == 'ミュージックディスク'"
+            v-else-if="
+              itemInfo.commonDetails.category == 'ミュージックディスク'
+            "
           />
           <WeaponSpecificDetails
             v-else-if="itemInfo.commonDetails.category == '武器'"
@@ -36,6 +38,12 @@ const createItem = () => {
           />
           <MagFormSpecificDetails
             v-else-if="itemInfo.commonDetails.category == 'マグフォルム'"
+          />
+          <EstheticSpecificDetails
+            v-else-if="itemInfo.commonDetails.category == 'エステ'"
+          />
+          <WearSpecificDetails
+            v-else-if="itemInfo.commonDetails.category == 'ウェア'"
           />
           <Availability />
           <Tags />
