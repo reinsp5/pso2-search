@@ -1,13 +1,4 @@
-import { Common, CommonDetails } from "./common";
-import { IBuildPart, IBuildPartSpecificDetails } from "./interfaces/i_build_part";
-
-export class BuildPart extends Common implements IBuildPart {
-  categorySpecificDetails: BuildPartSpecificDetails;
-  constructor(name: string, commonDetails: CommonDetails) {
-    super(name, commonDetails);
-    this.categorySpecificDetails = new BuildPartSpecificDetails();
-  }
-}
+import { IBuildPartSpecificDetails } from "./interfaces/i_build_part";
 
 export class BuildPartSpecificDetails implements IBuildPartSpecificDetails {
   subCategory: string;
@@ -17,13 +8,30 @@ export class BuildPartSpecificDetails implements IBuildPartSpecificDetails {
   maxCount: number;
   canRegister: boolean;
   purchaseCost: number;
-  constructor() {
-    this.subCategory = "";
-    this.canScale = false;
-    this.canRotate = false;
-    this.canChangeColor = false;
-    this.maxCount = 0;
-    this.canRegister = false;
-    this.purchaseCost = 0;
+
+  constructor({
+    subCategory = "",
+    canScale = false,
+    canRotate = false,
+    canChangeColor = false,
+    maxCount = 0,
+    canRegister = false,
+    purchaseCost = 0,
+  }: {
+    subCategory?: string;
+    canScale?: boolean;
+    canRotate?: boolean;
+    canChangeColor?: boolean;
+    maxCount?: number;
+    canRegister?: boolean;
+    purchaseCost?: number;
+  } = {}) {
+    this.subCategory = subCategory;
+    this.canScale = canScale;
+    this.canRotate = canRotate;
+    this.canChangeColor = canChangeColor;
+    this.maxCount = maxCount;
+    this.canRegister = canRegister;
+    this.purchaseCost = purchaseCost;
   }
 }

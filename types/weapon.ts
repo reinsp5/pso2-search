@@ -1,13 +1,4 @@
-import { IWeapon, IWeaponSpecificDetails } from "@/types/interfaces/i_weapon";
-import { Common, CommonDetails } from "./common";
-
-export class Weapon extends Common implements IWeapon {
-  categorySpecificDetails: IWeaponSpecificDetails;
-  constructor(name: string, commonDetails: CommonDetails) {
-    super(name, commonDetails);
-    this.categorySpecificDetails = new WeaponSpecificDetails();
-  }
-}
+import { IWeaponSpecificDetails } from "./interfaces/i_weapon";
 
 export class WeaponSpecificDetails implements IWeaponSpecificDetails {
   weaponType: string;
@@ -17,13 +8,30 @@ export class WeaponSpecificDetails implements IWeaponSpecificDetails {
   element: string;
   requiredLevel: number;
   potentials: string[];
-  constructor() {
-    this.weaponType = "";
-    this.minAttack = 0;
-    this.maxAttack = 0;
-    this.criticalRate = 0;
-    this.element = "";
-    this.requiredLevel = 0;
-    this.potentials = [];
+
+  constructor({
+    weaponType = "",
+    minAttack = 0,
+    maxAttack = 0,
+    criticalRate = 0,
+    element = "",
+    requiredLevel = 0,
+    potentials = [],
+  }: {
+    weaponType?: string;
+    minAttack?: number;
+    maxAttack?: number;
+    criticalRate?: number;
+    element?: string;
+    requiredLevel?: number;
+    potentials?: string[];
+  } = {}) {
+    this.weaponType = weaponType;
+    this.minAttack = minAttack;
+    this.maxAttack = maxAttack;
+    this.criticalRate = criticalRate;
+    this.element = element;
+    this.requiredLevel = requiredLevel;
+    this.potentials = potentials;
   }
 }

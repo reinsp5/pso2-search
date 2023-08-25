@@ -1,10 +1,7 @@
-import { ICommon } from "types/interfaces/i_common";
+import { IItem } from "./i_item";
 
-/**
- * interface ミュージックディスク
- */
-export interface IMusicDisc extends ICommon {
-  categorySpecificDetails: IMusicDiscSpecificDetails; // ミュージックディスク固有詳細
+export interface IMusicDisc extends IItem<IMusicDiscSpecificDetails> {
+  category: "ミュージックディスク"; // アイテムカテゴリ
 }
 
 /**

@@ -1,40 +1,99 @@
-import { Armor } from "./armor";
-import { BuildPart } from "./build_part";
-import { Esthetic } from "./esthetic";
-import { Common, CommonDetails } from "./common";
-import { MagForm } from "./mag_form";
-import { MusicDisc } from "./music_disc";
-import { Weapon } from "./weapon";
-import { WeaponSkin } from "./weapon_skin";
-import { Wear } from "./wear";
+import { Timestamp } from "firebase/firestore";
+import { ICommonDetails, IItem, IMeta } from "./interfaces/i_item";
+import { MeiliResponse } from "./meilisearch";
 
-export class ItemFactory {
-  static createItem(name: string, commonDetails: CommonDetails) {
-    switch (commonDetails.category) {
-      case "武器":
-        return new Weapon(name, commonDetails);
-      case "防具":
-        return new Armor(name, commonDetails);
-      case "武器迷彩":
-        return new WeaponSkin(name, commonDetails);
-      case "エステ":
-        return new Esthetic(name, commonDetails);
-      case "ウェア":
-        return new Wear(name, commonDetails);
-      case "クリエイティブスペース":
-        return new BuildPart(name, commonDetails);
-      case "消費アイテム":
-        return new Common(name, commonDetails);
-      case "素材アイテム":
-        return new Common(name, commonDetails);
-      case "マグフォルム":
-        return new MagForm(name, commonDetails);
-      case "ミュージックディスク":
-        return new MusicDisc(name, commonDetails);
-      case "その他":
-        return new Common(name, commonDetails);
-      default:
-        return new Common(name, commonDetails);
-    }
+export class Item<T> implements IItem<T> {
+  uuid: string;
+  name: string;
+  commonDetails: ICommonDetails;
+  categorySpecificDetails: T;
+  meta: IMeta;
+
+  constructor({
+    uuid = "",
+    name = "",
+    commonDetails = new CommonDetails(),
+    categorySpecificDetails = <T>{},
+    meta = new Meta(),
+  }: {
+    uuid?: string;
+    name?: string;
+    commonDetails?: ICommonDetails;
+    categorySpecificDetails?: T;
+    meta?: IMeta;
+  } = {}) {
+    this.uuid = uuid;
+    this.name = name;
+    this.commonDetails = commonDetails;
+    this.categorySpecificDetails = categorySpecificDetails;
+    this.meta = meta;
+  }
+  
+  static fromApiResponse(response: MeiliResponse): Item<T> {
+    const 
+  }
+}
+
+class CommonDetails implements ICommonDetails {
+  description: string;
+  category: string;
+  rarity: number;
+  isTradable: boolean;
+  isPso2Revived: boolean;
+  hasColorVariation: boolean;
+  availability: string[];
+  tags: string[];
+
+  constructor({
+    description = "",
+    category = "",
+    rarity = 1,
+    isTradable = false,
+    isPso2Revived = false,
+    hasColorVariation = false,
+    availability = [],
+    tags = [],
+  }: {
+    description?: string;
+    category?: string;
+    rarity?: number;
+    isTradable?: boolean;
+    isPso2Revived?: boolean;
+    hasColorVariation?: boolean;
+    availability?: string[];
+    tags?: string[];
+  } = {}) {
+    this.description = description;
+    this.category = category;
+    this.rarity = rarity;
+    this.isTradable = isTradable;
+    this.isPso2Revived = isPso2Revived;
+    this.hasColorVariation = hasColorVariation;
+    this.availability = availability;
+    this.tags = tags;
+  }
+}
+
+class Meta implements IMeta {
+  createDateTime: Timestamp;
+  createUserId: string;
+  updateDateTime: Timestamp;
+  updateUserId: string;
+
+  constructor({
+    createDateTime = Timestamp.now(),
+    createUserId = "",
+    updateDateTime = Timestamp.now(),
+    updateUserId = "",
+  }: {
+    createDateTime?: Timestamp;
+    createUserId?: string;
+    updateDateTime?: Timestamp;
+    updateUserId?: string;
+  } = {}) {
+    this.createDateTime = createDateTime;
+    this.createUserId = createUserId;
+    this.updateDateTime = updateDateTime;
+    this.updateUserId = updateUserId;
   }
 }

@@ -1,7 +1,7 @@
-import { ICommon } from "./i_common";
+import { IItem } from "./i_item";
 
-export interface IEsthetic extends ICommon {
-  categorySpecificDetails: IEstheticSpecificDetails; // キャラクター作成固有詳細
+export interface IEsthetic extends IItem<IEstheticSpecificDetails> {
+  category: "エステ"; // アイテムカテゴリ
 }
 
 export interface IEstheticSpecificDetails {

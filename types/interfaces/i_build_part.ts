@@ -1,10 +1,7 @@
-import { ICommon } from "types/interfaces/i_common";
+import { IItem } from "./i_item";
 
-/**
- * interface ビルドパーツ
- */
-export interface IBuildPart extends ICommon {
-  categorySpecificDetails: IBuildPartSpecificDetails; // ビルドパーツ固有詳細
+export interface IBuildPart extends IItem<IBuildPartSpecificDetails> {
+  category: "クリエイティブ・スペース";
 }
 
 /**

@@ -1,10 +1,7 @@
-import { ICommon } from "types/interfaces/i_common";
+import { IItem } from "./i_item";
 
-/**
- * interface 防具
- */
-export interface IArmor extends ICommon {
-  categorySpecificDetails: IArmorSpecificDetails; // 防具固有詳細
+export interface IArmor extends IItem<IArmorSpecificDetails> {
+  category: "防具"; // アイテムカテゴリ
 }
 
 /**

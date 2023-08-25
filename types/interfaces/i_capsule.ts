@@ -1,16 +1,13 @@
-import { ICommon } from 'types/interfaces/i_common';
+import { IItem } from "./i_item";
 
-/**
- * interface 能力カプセル
- */
-export interface ICapsule extends ICommon {
-  categorySpecificDetails: ICapsuleSpecificDetails; // カプセル固有詳細
+export interface ICapsule extends IItem<ICapsuleSpecificDetails> {
+  category: "能力カプセル"; // アイテムカテゴリ
 }
 
 /**
  * interface 能力カプセル固有詳細
  */
-interface ICapsuleSpecificDetails {
+export interface ICapsuleSpecificDetails {
   damageUp: number; // 威力
   strDamageUp: number; // 打撃力
   rgeDamageUp: number; // 射撃力

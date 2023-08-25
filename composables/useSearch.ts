@@ -1,9 +1,10 @@
-import { MeiliResponse } from '~/types/meilisearch';
+import { Item } from "types/item";
+import { MeiliResponse } from "~/types/meilisearch";
 
 export const useSearch = () => {
   const config = useRuntimeConfig();
   const parms = ref<any>({});
-  
+
   // 検索処理
   const search = async () => {
     const { data } = await useFetch<MeiliResponse>(
@@ -20,7 +21,7 @@ export const useSearch = () => {
       }
     );
 
-    return data.value;
+    return data.value?.hits.map((item) => Item.fromApiResponse(item)) ?? [];
   };
 
   return { search, parms };

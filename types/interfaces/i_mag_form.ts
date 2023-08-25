@@ -1,10 +1,7 @@
-import { ICommon } from "types/interfaces/i_common";
+import { IItem } from "./i_item";
 
-/**
- * interface マグフォルム
- */
-export interface IMagForm extends ICommon {
-  categorySpecificDetails: IMagFormSpecificDetails; // マグフォルム固有詳細
+export interface IMagForm extends IItem<IMagFormSpecificDetails> {
+  category: "マグフォルム"; // アイテムカテゴリ
 }
 
 /**
