@@ -4,12 +4,12 @@ import { Item } from "~/types/item";
 
 const props = defineProps({
   item: {
-    type: Object as PropType<Item>,
+    type: Item<any>,
     required: true,
   },
 });
 
-const stars = Array(props.item.rarity).fill("★");
+const stars = Array(props.item.commonDetails.rarity).fill("★");
 const getClass = (index: number) => {
   // 3つごとに色を変える
   if (index < 3) {
@@ -30,14 +30,14 @@ const getClass = (index: number) => {
 
 <template>
   <v-hover>
-    <v-card max-width="400" variant="outlined" :to="`/item/${item.id}`" nav>
+    <v-card max-width="400" variant="outlined" :to="`/item/${item.uuid}`" nav>
       <v-card-title class="text-body-1 text-md-h5 font-weight-bold">
         {{ item.name }}
       </v-card-title>
       <v-row class="ma-4" align="center" justify="center" no-gutters>
         <v-col align="center" cols="12">
           <v-avatar size="200" class="ma-8" rounded="0">
-            <v-img :src="item.cover_image_url.url" />
+            <v-img src="item.cover_image_url.url" />
           </v-avatar>
         </v-col>
         <!-- レアリティ -->
@@ -60,7 +60,7 @@ const getClass = (index: number) => {
           <v-row>
             <v-col> カテゴリ </v-col>
             <v-col>
-              {{ item.category }}
+              {{ item.commonDetails.category }}
             </v-col>
           </v-row>
         </v-col>
@@ -70,8 +70,8 @@ const getClass = (index: number) => {
             <v-col> マイショップ出品 </v-col>
             <v-col>
               <v-icon
-                :icon="item.tradeable ? mdiCheckCircle : mdiCloseCircle"
-                :color="item.tradeable ? 'success' : 'error'"
+                :icon="item.commonDetails.isTradable ? mdiCheckCircle : mdiCloseCircle"
+                :color="item.commonDetails.isTradable ? 'success' : 'error'"
               />
             </v-col>
           </v-row>
@@ -81,8 +81,8 @@ const getClass = (index: number) => {
           <v-row>
             <v-col> PSO2リバイバル品 </v-col>
             <v-col>
-              <span :color="item.tradeable ? 'success' : 'error'">
-                {{ item.pso2_revival ? "済" : "未済" }}
+              <span :color="item.commonDetails.isPso2Revived ? 'success' : 'error'">
+                {{ item.commonDetails.isPso2Revived ? "済" : "未済" }}
               </span>
             </v-col>
           </v-row>
@@ -93,7 +93,7 @@ const getClass = (index: number) => {
             <v-col> タグ </v-col>
             <v-col>
               <v-chip
-                v-for="(tag, index) in item.tags"
+                v-for="(tag, index) in item.commonDetails.tags"
                 :key="index"
                 :text="tag"
                 :class="{ 'd-none': tag == '' }"

@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { BuildPart } from "@/types/build_part";
+import { Item } from "types/item";
+import { BuildPartSpecificDetails } from "types/build_part";
 
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<BuildPart>;
+const itemInfo = useCreateItemInfo() as Ref<Item<BuildPartSpecificDetails>>;
 
 // 必須入力チェック
 const required = (v: string) => !!v || "必ず入力してください";

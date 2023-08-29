@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ItemFactory } from "@/types/item_factory";
+import { Item } from "@/types/item";
 
 // フォームの情報
 const itemInfo = useCreateItemInfo();
@@ -23,13 +23,13 @@ const items: string[] = [
 const required = (v: string) => !!v || "必ず入力してください";
 
 // カテゴリー選択時の処理
-const changeCategory = () => {
-  itemInfo.value = ItemFactory.createItem(
-    itemInfo.value.name,
-    itemInfo.value.commonDetails
-  );
-  console.log(itemInfo.value);
-};
+// const changeCategory = () => {
+//   itemInfo.value = Item.createItem(
+//     itemInfo.value.name,
+//     itemInfo.value.commonDetails
+//   );
+//   console.log(itemInfo.value);
+// };
 </script>
 
 <template>
@@ -42,7 +42,6 @@ const changeCategory = () => {
         variant="outlined"
         density="compact"
         :rules="[required]"
-        @update:model-value="changeCategory"
       />
     </v-col>
   </v-row>

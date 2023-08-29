@@ -78,4 +78,46 @@ export class WeaponSkinSpecificDetails implements IWeaponSkinSpecificDetails {
     this.canJetBoots = canJetBoots;
     this.canTakt = canTakt;
   }
+
+  allWeaponTrue() {
+    this.canSword = true;
+    this.canPartisan = true;
+    this.canWiredLance = true;
+    this.canTwinDagger = true;
+    this.canDoubleSaber = true;
+    this.canKnuckle = true;
+    this.canKatana = true;
+    this.canDualBlade = true;
+    this.canAssaultRifle = true;
+    this.canLauncher = true;
+    this.canTwinMachinegun = true;
+    this.canBulletBow = true;
+    this.canGunslash = true;
+    this.canRod = true;
+    this.canTalis = true;
+    this.canWand = true;
+    this.canJetBoots = true;
+    this.canTakt = true;
+  }
+
+  allWeaponFalse() {
+    this.canSword = false;
+    this.canPartisan = false;
+    this.canWiredLance = false;
+    this.canTwinDagger = false;
+    this.canDoubleSaber = false;
+    this.canKnuckle = false;
+    this.canKatana = false;
+    this.canDualBlade = false;
+    this.canAssaultRifle = false;
+    this.canLauncher = false;
+    this.canTwinMachinegun = false;
+    this.canBulletBow = false;
+    this.canGunslash = false;
+    this.canRod = false;
+    this.canTalis = false;
+    this.canWand = false;
+    this.canJetBoots = false;
+    this.canTakt = false;
+  }
 }

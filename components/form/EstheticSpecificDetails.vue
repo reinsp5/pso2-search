@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { Esthetic } from "types/esthetic";
+import { Item } from "types/item";
+import { EstheticSpecificDetails } from "types/esthetic";
 
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<Esthetic>;
+const itemInfo = useCreateItemInfo() as Ref<Item<EstheticSpecificDetails>>;
 
 // 必須入力チェック
 const required = (v: string) => !!v || "必ず入力してください";

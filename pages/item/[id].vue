@@ -1,22 +1,23 @@
 <script lang="ts" setup>
+const item :any = {}
 import { mdiCheckCircle, mdiCloseCircle, mdiFileEditOutline } from "@mdi/js";
-import { doc } from "firebase/firestore";
-import { Item } from "~/types/item";
+// import { doc } from "firebase/firestore";
+// import { Item } from "~/types/item";
 
-const config = useRuntimeConfig();
+// const config = useRuntimeConfig();
 
 const { isAuthed } = useAuth();
 
-const item = ref(new Item());
+// const item = ref(new Item());
 const itemId = useRoute().params.id as string;
-const docUid = ref("");
-const { search, parms } = useSearch();
-parms.value = {
-  filter: `id = ${itemId}`,
-};
-const response = await search();
-docUid.value = response!.hits[0]._firestore_id;
-item.value = new Item().mapItem(response!.hits[0]) || new Item();
+// const docUid = ref("");
+// const { search, parms } = useSearch();
+// parms.value = {
+//   filter: `id = ${itemId}`,
+// };
+// const response = await search();
+// docUid.value = response!.hits[0]._firestore_id;
+// item.value = new Item().mapItem(response!.hits[0]) || new Item();
 
 const stars = Array(item.value.rarity).fill("★");
 const getClass = (index: number) => {

@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { WeaponSkin } from "types/weapon_skin";
+import { Item } from "types/item";
+import { WeaponSkinSpecificDetails } from "types/weapon_skin";
 
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<WeaponSkin>;
+const itemInfo = useCreateItemInfo() as Ref<Item<WeaponSkinSpecificDetails>>;
 const allWeapon = ref(false);
 
 const checkAll = () => {

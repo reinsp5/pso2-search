@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { Wear } from 'types/wear';
+import { Item } from 'types/item';
+import { WearSpecificDetails } from 'types/wear';
 
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<Wear>;
+const itemInfo = useCreateItemInfo() as Ref<Item<WearSpecificDetails>>;
 
 // 必須入力チェック
 const required = (v: string) => !!v || "必ず入力してください";

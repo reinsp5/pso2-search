@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 const itemInfo = useCreateItemInfo();
-const createItem = () => {
-  console.log(itemInfo.value);
+const createItem = async () => {
+  const { insert } = useItem();
+  await insert(itemInfo.value, "");
 };
 </script>
 
@@ -13,7 +14,7 @@ const createItem = () => {
           <Name />
           <CategorySelector />
           <ItemMainImage />
-          <Rarity />
+          <RaritySelector />
           <CommonOptions />
         </v-col>
         <v-col cols="12" md="6" class="px-4">

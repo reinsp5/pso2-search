@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { Weapon } from "types/weapon";
+import { Item } from "types/item";
+import { WeaponSpecificDetails } from "types/weapon";
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<Weapon>;
+const itemInfo = useCreateItemInfo() as Ref<Item<WeaponSpecificDetails>>;
 
 const items = ["炎属性", "氷属性", "雷属性", "風属性", "光属性", "闇属性"];
 </script>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { mdiMagnify } from "@mdi/js";
-import { Item } from "~/types/item";
+import { Item } from "types/item";
 
 // SEO情報
 const pageTitle = "ホーム | PSO2 Search Unofficial Item Search Engine";
@@ -12,7 +12,7 @@ useSeoMeta({
 });
 
 const keyword = ref("");
-const searchResults = useState<Item[]>("search-result", () => []);
+const searchResults = useState<Item<any>[]>("search-result", () => []);
 const { darkMode } = useAppTheme();
 
 const isCompositioning = ref(false);
@@ -34,12 +34,10 @@ const search = async () => {
     return;
   }
 
-  const { search, parms } = useSearch();
-  parms.value.q = keyword.value;
-  const response = await search();
-  searchResults.value = response!.hits.map((item) => {
-    return new Item().mapItem(item);
-  });
+  const { search } = useItem();
+  let params: any = {};
+  params.q = keyword.value;
+  searchResults.value = await search(params);
 
   // 検索結果が１件以上ある場合は、検索結果を表示するページへ遷移
   await navigateTo("/search");

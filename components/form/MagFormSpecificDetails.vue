@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { MagForm } from "types/mag_form";
+import { Item } from "types/item";
+import { MagFormSpecificDetails } from "types/mag_form";
 
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<MagForm>;
+const itemInfo = useCreateItemInfo() as Ref<Item<MagFormSpecificDetails>>;
 </script>
 
 <template>

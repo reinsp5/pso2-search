@@ -11,7 +11,7 @@ useSeoMeta({
 });
 
 const keyword = ref("");
-const searchResults = useState<Item[]>("search-result", () => []);
+const searchResults = useState<Item<any>[]>("search-result", () => []);
 
 const { darkMode } = useAppTheme();
 const isCompositioning = ref(false);
@@ -31,12 +31,10 @@ const search = async () => {
   if (isCompositioning.value) {
     return;
   }
-  const { search, parms } = useSearch();
-  parms.value.q = keyword.value;
-  const response = await search();
-  searchResults.value = response!.hits.map((item) => {
-    return new Item().mapItem(item);
-  });
+  const { search } = useItem();
+  let params: any = {};
+  params.q = keyword.value;
+  searchResults.value = await search(params);
 };
 </script>
 
@@ -67,7 +65,7 @@ const search = async () => {
       </v-col>
     </v-row>
     <v-row justify="center" justify-sm="start">
-      <v-col v-for="item in searchResults" :key="item.id" cols="auto">
+      <v-col v-for="item in searchResults" :key="item.uuid" cols="auto">
         <SearchResultCard :item="item" />
       </v-col>
     </v-row>

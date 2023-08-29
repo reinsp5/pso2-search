@@ -1,6 +1,9 @@
 <script lang="ts" setup>
+import { Item } from "types/item";
+import { WeaponSpecificDetails } from "types/weapon";
+
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo();
+const itemInfo = useCreateItemInfo() as Ref<Item<WeaponSpecificDetails>>;
 
 // 選択肢
 const items: string[] = [

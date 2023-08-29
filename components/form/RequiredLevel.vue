@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { Weapon } from "types/weapon";
+import { Item } from "types/item";
+import { WeaponSpecificDetails } from "types/weapon";
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<Weapon>;
+const itemInfo = useCreateItemInfo() as Ref<Item<WeaponSpecificDetails>>;
 </script>
 
 <template>
@@ -9,7 +10,9 @@ const itemInfo = useCreateItemInfo() as Ref<Weapon>;
     <v-col cols="12">
       <v-text-field
         :model-value="itemInfo.categorySpecificDetails.requiredLevel"
-        @update:model-value="itemInfo.categorySpecificDetails.requiredLevel = Number($event)"
+        @update:model-value="
+          itemInfo.categorySpecificDetails.requiredLevel = Number($event)
+        "
         type="number"
         label="必要最小Lv."
         variant="outlined"

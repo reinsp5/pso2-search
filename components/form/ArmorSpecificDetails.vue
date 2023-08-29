@@ -1,8 +1,9 @@
 <script lang="ts" setup>
-import { Armor } from "@/types/armor";
+import { ArmorSpecificDetails } from "types/armor";
+import { Item } from "types/item";
 
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<Armor>;
+const itemInfo = useCreateItemInfo() as Ref<Item<ArmorSpecificDetails>>;
 
 // 表示中のときは必須入力チェック
 const required = (v: string) => !!v || "必ず入力してください";

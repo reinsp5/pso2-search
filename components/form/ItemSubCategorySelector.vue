@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { Item } from "types/item";
 const props = defineProps({
   subCategoryType: {
     type: String,
@@ -6,7 +7,7 @@ const props = defineProps({
   },
 });
 // 入力情報の共有State
-const itemInfo = useCreateItemInfo() as Ref<>;
+const itemInfo = useCreateItemInfo() as Ref<Item<any>>;
 
 // 必須入力チェック
 const required = (v: string) => !!v || "必ず入力してください";
@@ -67,7 +68,7 @@ const consumableItems = [
 <template>
   <v-col cols="12">
     <v-select
-      v-model="itemInfo.sub_category"
+      v-model="itemInfo.commonDetails.category"
       class="mt-4"
       label="サブカテゴリー"
       :items="items"

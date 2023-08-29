@@ -13,7 +13,7 @@ import {
   AuthedUploadUrlResponse,
   DirectUploadUrlResponse,
 } from "types/cloudflare";
-import { Item } from "types/item";
+import { Item } from "@/types/item";
 import { MeiliResponse } from "types/meilisearch";
 import { v4 as uuidv4 } from "uuid";
 
