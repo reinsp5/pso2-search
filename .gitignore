@@ -15,3 +15,5 @@ emulator_data
 firestore.rules
 firebase.json
 rests
+emulator_data
+meili_data
