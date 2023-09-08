@@ -2,8 +2,8 @@
 const itemInfo = useCreateItemInfo();
 const createItem = async () => {
   console.log(itemInfo.value);
-  // const { insert } = useItem();
-  // await insert(itemInfo.value, "");
+  const { insert } = useItem();
+  await insert(itemInfo.value, "");
 };
 </script>
 

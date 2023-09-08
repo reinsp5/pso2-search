@@ -10,6 +10,8 @@ const props = defineProps({
   },
 });
 
+console.log(props.itemInfo.categorySpecificDetails);
+
 // URLからアイテムのUUIDを取得
 const itemUid = useRoute().params.id as string;
 
@@ -26,7 +28,7 @@ const { isAuthed } = useAuth();
       </v-card-title>
       <v-row class="text-caption text-md-h6" align="center" no-gutters>
         <CommonView :commonDetails="props.itemInfo.commonDetails" />
-        <WeaponSpecificView v-if="typeof itemInfo.categorySpecificDetails === 'WeaponSpecificDetails'" />
+        <WeaponSpecificView v-if="typeof itemInfo.categorySpecificDetails === 'object' && 'weaponType' in itemInfo.categorySpecificDetails" :specificDetails="itemInfo.categorySpecificDetails" />
       </v-row>
       <v-card-actions v-if="isAuthed">
         <v-row no-gutters>

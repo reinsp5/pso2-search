@@ -140,7 +140,7 @@ export class Item<T> implements IItem<T> {
   }
 }
 
-class CommonDetails implements ICommonDetails {
+export class CommonDetails implements ICommonDetails {
   description: string;
   category: string;
   rarity: number;

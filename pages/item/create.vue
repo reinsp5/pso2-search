@@ -1,8 +1,8 @@
 <script lang="ts" setup>
-// 認証必須
-// definePageMeta({
-//   middleware: ["auth"],
-// });
+//認証必須
+definePageMeta({
+  middleware: ["auth"],
+});
 
 // SEO情報
 useSeoMeta({

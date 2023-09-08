@@ -22,7 +22,7 @@ export const useItem = () => {
   const search = async (parms: any) => {
     const config = useRuntimeConfig();
     const { data } = await useFetch<MeiliResponse>(
-      config.public.meilisearchUrl + "/indexes/items/search",
+      config.public.meilisearchUrl + "/indexes/pso2-items/search",
       {
         method: "POST",
         headers: {
@@ -64,31 +64,31 @@ export const useItem = () => {
           throw new Error("ユーザ情報が取得できませんでした。");
         }
 
-        // CloudflareImages アップロード用URL取得
-        const authedUrl = getUploadUrl();
+        // // CloudflareImages アップロード用URL取得
+        // const authedUrl = getUploadUrl();
 
-        // 画像アップロード用のURLが取得できなかったらエラー
-        if (!authedUrl || !authedUrl.success) {
-          throw new Error(`画像アップロード用のURLが取得できませんでした。`);
-        }
+        // // 画像アップロード用のURLが取得できなかったらエラー
+        // if (!authedUrl || !authedUrl.success) {
+        //   throw new Error(`画像アップロード用のURLが取得できませんでした。`);
+        // }
 
-        // CloudflareImages へのアップロード
-        const response = await fetch(imageLocalUrl);
-        const fileBlob = await response.blob();
-        const formData = new FormData();
-        formData.append("file", fileBlob);
-        const { data } = await useFetch<DirectUploadUrlResponse>(
-          authedUrl.uploadURL,
-          {
-            method: "POST",
-            body: formData,
-          }
-        );
+        // // CloudflareImages へのアップロード
+        // const response = await fetch(imageLocalUrl);
+        // const fileBlob = await response.blob();
+        // const formData = new FormData();
+        // formData.append("file", fileBlob);
+        // const { data } = await useFetch<DirectUploadUrlResponse>(
+        //   authedUrl.uploadURL,
+        //   {
+        //     method: "POST",
+        //     body: formData,
+        //   }
+        // );
 
-        // 画像のアップロードが失敗したらエラー
-        if (!data.value || !data.value!.success) {
-          throw new Error(`画像のアップロードに失敗しました。`);
-        }
+        // // 画像のアップロードが失敗したらエラー
+        // if (!data.value || !data.value!.success) {
+        //   throw new Error(`画像のアップロードに失敗しました。`);
+        // }
 
         // ドキュメントを追加
         const docRef = await addDoc(collection($store, "items"), <Item<any>>{
@@ -103,12 +103,13 @@ export const useItem = () => {
           commonDetails: {
             ...item.commonDetails,
             coverImage: {
-              id: data.value?.result.id ?? "",
-              url: data.value
-                ? `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${
-                    data.value!.result.id
-                  }/public`
-                : "https://pso2-search.com/images/no_image.webp",
+              id: "", //data.value?.result.id ?? "",
+              url: "",
+              // url: data.value
+              //   ? `https://imagedelivery.net/y6deFg4uWz5Imy5sDx3EYA/${
+              //       data.value!.result.id
+              //     }/public`
+              //   : "https://pso2-search.com/images/no_image.webp",
             },
           },
         });

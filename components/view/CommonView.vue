@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { CommonDetails } from "@/types/common";
+import { CommonDetails } from "@/types/item";
 
 // Propsの定義
 const props = defineProps({
@@ -23,7 +23,9 @@ const props = defineProps({
     <v-row>
       <!-- レアリティ -->
       <v-col>レアリティ</v-col>
-      <Rarity :rarity="props.commonDetails.rarity" />
+      <v-col>
+        <Rarity :rarity="props.commonDetails.rarity" />
+      </v-col>
     </v-row>
   </v-col>
   <v-col class="my-2">
