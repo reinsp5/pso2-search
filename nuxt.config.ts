@@ -9,6 +9,7 @@ const {
   NUXT_PUBLIC_FIREBASE_APP_ID,
   NUXT_CLOUDFLARE_IMAGES_KEY,
   NUXT_PUBLIC_MEILISEARCH_API_KEY,
+  NUXT_PUBLIC_MEILISEARCH_DOMAIN,
 } = process.env;
 
 export default defineNuxtConfig({
@@ -87,6 +88,7 @@ export default defineNuxtConfig({
       firebaseAppId: NUXT_PUBLIC_FIREBASE_APP_ID || "",
       firebaseMeasurementId: "",
       meilisearchApiKey: NUXT_PUBLIC_MEILISEARCH_API_KEY || "",
+      meilisearchUrl: NUXT_PUBLIC_MEILISEARCH_DOMAIN || "",
     },
   },
   app: {

@@ -1,8 +1,9 @@
 <script lang="ts" setup>
 const itemInfo = useCreateItemInfo();
 const createItem = async () => {
-  const { insert } = useItem();
-  await insert(itemInfo.value, "");
+  console.log(itemInfo.value);
+  // const { insert } = useItem();
+  // await insert(itemInfo.value, "");
 };
 </script>
 

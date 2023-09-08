@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { Item } from "types/item";
-import { WeaponSpecificDetails } from "types/weapon";
+import { Item } from "@/types/item";
+import { WeaponSpecificDetails } from "@/types/weapon";
 
 // 入力情報の共有State
 const itemInfo = useCreateItemInfo() as Ref<Item<WeaponSpecificDetails>>;
@@ -39,7 +39,6 @@ const required = (v: string) => !!v || "必ず入力してください";
     </v-col>
     <v-col cols="6">
       <v-text-field
-        :rules="[required]"
         :model-value="itemInfo.categorySpecificDetails.criticalRate"
         @update:model-value="
           itemInfo.categorySpecificDetails.criticalRate = Number($event)

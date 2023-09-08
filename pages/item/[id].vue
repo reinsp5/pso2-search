@@ -1,25 +1,22 @@
 <script lang="ts" setup>
-const item :any = {}
 import { mdiCheckCircle, mdiCloseCircle, mdiFileEditOutline } from "@mdi/js";
-// import { doc } from "firebase/firestore";
-// import { Item } from "~/types/item";
-
+import { doc } from "firebase/firestore";
+import { Item } from "@/types/item";
 // const config = useRuntimeConfig();
 
 const { isAuthed } = useAuth();
 
-// const item = ref(new Item());
-const itemId = useRoute().params.id as string;
-// const docUid = ref("");
-// const { search, parms } = useSearch();
-// parms.value = {
-//   filter: `id = ${itemId}`,
-// };
-// const response = await search();
-// docUid.value = response!.hits[0]._firestore_id;
-// item.value = new Item().mapItem(response!.hits[0]) || new Item();
+// URLからアイテムのUUIDを取得
+const itemUid = useRoute().params.id as string;
+const { search } = useItem();
+const parms = {
+  filter: `uuid = ${itemUid}`,
+};
+const response = await search(parms);
+const itemInfo = useCreateItemInfo();
+itemInfo.value = response[0];
 
-const stars = Array(item.value.rarity).fill("★");
+const stars = Array(itemInfo.value.commonDetails.rarity).fill("★");
 const getClass = (index: number) => {
   // 3つごとに色を変える
   if (index < 3) {
@@ -38,7 +35,7 @@ const getClass = (index: number) => {
 };
 
 useHead({
-  title: `${item.value.name} | PSO2 Search Unofficial Item Search Engine`,
+  title: `${itemInfo.value.name} | PSO2 Search Unofficial Item Search Engine`,
 });
 </script>
 
@@ -47,14 +44,14 @@ useHead({
     <v-card class="pa-4" max-width="960" variant="outlined">
       <v-card-title class="d-flex align-center justify-center">
         <span class="text-body-1 text-md-h5 font-weight-bold">
-          {{ item.name }}
+          {{ itemInfo.name }}
         </span>
       </v-card-title>
       <v-row class="text-caption text-md-h6" align="center" no-gutters>
         <v-col class="my-2" align="center" cols="12">
           <!-- 画像 -->
           <v-img
-            :src="item.cover_image_url.url"
+            :src="itemInfo.commonDetails.coverImage.url"
             max-width="200"
             max-height="200"
           />
@@ -72,7 +69,7 @@ useHead({
                 {{ star }}
               </span>
               <span>
-                {{ `（${item.rarity}）` }}
+                {{ `（${itemInfo.commonDetails.rarity}）` }}
               </span>
             </v-col>
           </v-row>
@@ -81,29 +78,29 @@ useHead({
         <v-col class="my-2">
           <v-row>
             <v-col>カテゴリ</v-col>
-            <v-col>{{ item.category }}</v-col>
+            <v-col>{{ itemInfo.commonDetails.category }}</v-col>
           </v-row>
         </v-col>
         <!-- サブカテゴリ（オプション） -->
-        <v-col class="my-2" v-if="item.sub_category.length" cols="12">
+        <v-col class="my-2" v-if="itemInfo.categorySpecificDetails.subCategory" cols="12">
           <v-row>
             <v-col>サブカテゴリ</v-col>
             <v-col>
-              {{ item.sub_category }}
+              {{ itemInfo.categorySpecificDetails.subCategory }}
             </v-col>
           </v-row>
         </v-col>
         <!-- 武器種（オプション） -->
-        <v-col class="my-2" v-if="item.weapon_type.length" cols="12">
+        <v-col class="my-2" v-if="itemInfo.categorySpecificDetails.weaponType" cols="12">
           <v-row>
             <v-col>武器種</v-col>
             <v-col>
-              {{ item.weapon_type }}
+              {{ itemInfo.categorySpecificDetails.weaponType }}
             </v-col>
           </v-row>
         </v-col>
         <!-- 属性（オプション） -->
-        <v-col class="my-2" v-if="item.category === '武器'" cols="12">
+        <v-col class="my-2" v-if="itemInfo.commonDetails.category === '武器'" cols="12">
           <v-row>
             <v-col>属性</v-col>
             <v-col>

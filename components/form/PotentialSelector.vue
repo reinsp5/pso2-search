@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { Item } from "types/item";
-import { WeaponSpecificDetails } from "types/weapon";
+import { Item } from "@/types/item";
+import { WeaponSpecificDetails } from "@/types/weapon";
 
 // 入力情報の共有State
 const itemInfo = useCreateItemInfo() as Ref<Item<WeaponSpecificDetails>>;
@@ -58,13 +58,12 @@ const items = [
   <v-row>
     <v-col cols="12">
       <v-select
-        v-model="itemInfo.categorySpecificDetails.potentials"
+        v-model="itemInfo.categorySpecificDetails.potential"
         label="潜在能力"
         :items="items"
         :rules="[required]"
         variant="outlined"
         density="compact"
-        multiple
       />
     </v-col>
   </v-row>

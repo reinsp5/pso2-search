@@ -7,7 +7,7 @@ export class WeaponSpecificDetails implements IWeaponSpecificDetails {
   criticalRate: number;
   element: string;
   requiredLevel: number;
-  potentials: string[];
+  potential: string;
 
   constructor({
     weaponType = "",
@@ -16,7 +16,7 @@ export class WeaponSpecificDetails implements IWeaponSpecificDetails {
     criticalRate = 0,
     element = "",
     requiredLevel = 0,
-    potentials = [],
+    potential = "",
   }: {
     weaponType?: string;
     minAttack?: number;
@@ -24,7 +24,7 @@ export class WeaponSpecificDetails implements IWeaponSpecificDetails {
     criticalRate?: number;
     element?: string;
     requiredLevel?: number;
-    potentials?: string[];
+    potential?: string;
   } = {}) {
     this.weaponType = weaponType;
     this.minAttack = minAttack;
@@ -32,6 +32,6 @@ export class WeaponSpecificDetails implements IWeaponSpecificDetails {
     this.criticalRate = criticalRate;
     this.element = element;
     this.requiredLevel = requiredLevel;
-    this.potentials = potentials;
+    this.potential = potential;
   }
 }

@@ -14,5 +14,5 @@ export interface IWeaponSpecificDetails {
   criticalRate: number; // クリティカル率
   element: string; // 属性
   requiredLevel: number; // 必要レベル
-  potentials: string[]; // 潜在能力
+  potential: string; // 潜在能力
 }

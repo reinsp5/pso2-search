@@ -12,9 +12,9 @@ import {
 import {
   AuthedUploadUrlResponse,
   DirectUploadUrlResponse,
-} from "types/cloudflare";
+} from "@/types/cloudflare";
 import { Item } from "@/types/item";
-import { MeiliResponse } from "types/meilisearch";
+import { MeiliResponse } from "@/types/meilisearch";
 import { v4 as uuidv4 } from "uuid";
 
 export const useItem = () => {
@@ -22,7 +22,7 @@ export const useItem = () => {
   const search = async (parms: any) => {
     const config = useRuntimeConfig();
     const { data } = await useFetch<MeiliResponse>(
-      "https://search.reinsp5.com/indexes/pso2-items/search",
+      config.public.meilisearchUrl + "/indexes/items/search",
       {
         method: "POST",
         headers: {

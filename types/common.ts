@@ -1,4 +1,4 @@
-import { ICommon, ICommonDetails } from "types/interfaces/i_common";
+import { ICommon, ICommonDetails } from "./interfaces/i_common";
 
 /**
  * class 共通項目
